@@ -7,11 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 /**
- * Página de inicio
+ * Página de platillos
  */
-public class HomePage extends Page {
+public class FoodPage extends Page {
 
-  @FindBy(how = How.TAG_NAME, using = "h1")
+  @FindBy(how = How.XPATH, using = "//*[@id=\"inner-headline\"]/div/div/div/h2")
   @CacheLookup
   public WebElement header;
 
@@ -19,7 +19,13 @@ public class HomePage extends Page {
   @CacheLookup
   public WebElement navbar;
 
-  public HomePage(WebDriver webDriver) {
+  @FindBy(how = How.XPATH, using = "//*[@id=\"content\"]/div")
+  public WebElement container;
+
+  @FindBy(how = How.XPATH, using = "//*[@id=\"content\"]/div/div/div/ul")
+  public WebElement tabFilter;
+
+  public FoodPage(WebDriver webDriver) {
     super(webDriver);
   }
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -42,7 +43,10 @@ public class TestNgTestBase {
       WebDriverFactory.dismissDriver(driver);
     }
   }
-
+  @AfterMethod
+  public void clear() {
+    driver.navigate().refresh();
+  }
   @AfterTest
   // Close windows after test
   public void close() {
