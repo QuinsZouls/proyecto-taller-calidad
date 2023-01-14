@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
 import ru.stqa.selenium.factory.WebDriverFactory;
@@ -40,7 +40,12 @@ public class TestNgTestBase {
   public void tearDown() {
     if (driver != null) {
       WebDriverFactory.dismissDriver(driver);
-      driver.quit();
     }
+  }
+
+  @AfterTest
+  // Close windows after test
+  public void close() {
+    driver.quit();
   }
 }
